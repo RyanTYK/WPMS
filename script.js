@@ -6,6 +6,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const schedules = [];
 
+  // Create an audio element for the notification sound
+  const audio = new Audio("audio.mp3");
+  audio.loop = true; // Enable looping
+
   // Handle form submission
   scheduleForm.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -68,6 +72,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     schedules.splice(index, 1); // Remove the watered plant from the schedule
     updateScheduleList();
+
+    // Stop the audio if there are no more due plants
+    if (!schedules.some((schedule) => schedule.nextWatering <= new Date())) {
+      audio.pause();
+      audio.currentTime = 0; // Reset the audio to the beginning
+    }
   }
 
   // Update reminders
@@ -82,5 +92,9 @@ document.addEventListener("DOMContentLoaded", () => {
           .map((schedule) => schedule.plantName)
           .join(", ")}`
       : "No plants need watering right now!";
+
+    if (duePlants.length) {
+      audio.play(); // Play the notification sound
+    }
   }
 });
