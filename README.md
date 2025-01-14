@@ -16,4 +16,4 @@ A lightweight web-based application to help users automate and track plant water
 
 ### 1. Clone the Repository
 ```bash
-git clone [https://github.com/your-username/your-repo-name.git](https://github.com/rizkifatra/WPMS.git)
+git clone (https://github.com/rizkifatra/WPMS.git)
